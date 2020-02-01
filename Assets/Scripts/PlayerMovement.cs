@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerStats playerStats;
     // Start is called before the first frame update
     Vector3 pos;
     bool complete;
     bool input;
-
+    
+    void Awake() {
+    playerStats = GetComponent<PlayerStats>();
+    }
     public int speed;
 
     Ray ray;
@@ -49,8 +53,13 @@ public class PlayerMovement : MonoBehaviour
     {
        if (collisionInfo.collider.tag == "Enemy")
        {
+           if (playerStats.gears<3)
+           {
            Debug.Log("We hit an enemy");
-           Destroy(gameObject);
+           Destroy(collisionInfo.gameObject);
+           playerStats.gears = playerStats.gears+1;
+           Debug.Log(playerStats.gears);
+            }
        }
     }
 }
