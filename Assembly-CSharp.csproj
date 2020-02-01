@@ -46,11 +46,8 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\EnemyMovement.cs" />
-<<<<<<< HEAD
-     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
-=======
      <Compile Include="Assets\Scripts\ItemLifetine.cs" />
->>>>>>> master
+     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
