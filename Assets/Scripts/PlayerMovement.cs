@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     //Colisiones del personaje.
     void OnCollisionEnter(Collision collisionInfo)
     {
-        //Colision con enemigo.
+        //Colision con engranajes.
         if (collisionInfo.collider.tag == "Enemy")
         {
             if (playerStats.gears < 3)
