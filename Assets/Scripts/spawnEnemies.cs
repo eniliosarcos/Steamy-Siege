@@ -12,6 +12,8 @@ public class spawnEnemies : MonoBehaviour
     int _intervaTime;
     public Transform[] points;
     int index;
+
+    public WaveManager waveManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +23,18 @@ public class spawnEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(TimerInterval() > _intervaTime)
+        if(waveManager.startSpamEnemies)
         {
-            _intervaTime += intervalTime;
-            index = Random.Range(0,points.Length);
-            GameObject go = Instantiate(enemies[0],points[index].position,Quaternion.identity);
-            go.GetComponent<NavMeshAgent>().Warp(points[index].position);
+            if(TimerInterval() > _intervaTime)
+            {
+                _intervaTime += intervalTime;
+                index = Random.Range(0,points.Length);
+                GameObject go = Instantiate(enemies[0],points[index].position,Quaternion.identity);
+                go.GetComponent<NavMeshAgent>().Warp(points[index].position);
+            }
         }
+
+
     }
 
     float TimerInterval()
