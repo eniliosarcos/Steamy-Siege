@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public int speed;
     bool max;
     Ray ray;
-    public float currentTime = 0f;
-    public float startingTime = 10f;
+    public GameObject waveClearedUI;
+    public GameObject prepareWaveUI;
 
     void Awake()
     {
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     //Colisiones del personaje.
     void OnCollisionEnter(Collision collisionInfo)
     {
-        //Colision con enemigo.
+        //Colision con engranajes.
         if (collisionInfo.collider.tag == "Enemy")
         {
             if (playerStats.gears < 3)
@@ -76,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
                 playerStats.gears = playerStats.gears + 1;
                 text.text = playerStats.gears.ToString();
                 Debug.Log(playerStats.gears);
+                waveClearedUI.SetActive(true);
+                prepareWaveUI.SetActive(true);
             }
        }
 
