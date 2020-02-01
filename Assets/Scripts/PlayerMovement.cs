@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
                 playerStats.gears = playerStats.gears + 1;
                 Debug.Log(playerStats.gears);
             }
+       }
         }
 
         //Colision con arma
