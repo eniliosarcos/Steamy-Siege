@@ -12,11 +12,12 @@ public class EnemyMovement : MonoBehaviour
     {
         tower = GameObject.FindGameObjectWithTag("Tower").transform;
         _agent = GetComponent<NavMeshAgent>();
+        _agent.SetDestination(tower.position);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        _agent.SetDestination(new Vector3(tower.position.x,0,tower.position.z));
+    private void OnCollisionEnter(Collision other) {
+        if(other.collider.tag == "Tower")
+        {
+            Destroy(gameObject);
+        }
     }
 }

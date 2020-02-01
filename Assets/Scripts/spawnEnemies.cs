@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class spawnEnemies : MonoBehaviour
 {
@@ -9,12 +10,11 @@ public class spawnEnemies : MonoBehaviour
 
     float _timerInterval;
     int _intervaTime;
-    Transform[] points;
+    public Transform[] points;
     int index;
     // Start is called before the first frame update
     void Start()
     {
-        points = GetComponentsInChildren<Transform>();
         _intervaTime = intervalTime;
     }
 
@@ -25,7 +25,8 @@ public class spawnEnemies : MonoBehaviour
         {
             _intervaTime += intervalTime;
             index = Random.Range(0,points.Length);
-            GameObject go = Instantiate(enemies[0],new Vector3(points[index].position.x,points[index].position.y,points[index].position.z),Quaternion.identity);
+            GameObject go = Instantiate(enemies[0],points[index].position,Quaternion.identity);
+            go.GetComponent<NavMeshAgent>().Warp(points[index].position);
         }
     }
 
