@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log(playerStats.gears);
             }
        }
-        }
 
         //Colision con arma
         if (collisionInfo.collider.tag == "Weapon" && counter == 0)
