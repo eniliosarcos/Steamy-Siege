@@ -9,7 +9,7 @@ public class ItemLifetine : MonoBehaviour
     public float lifetime = 4.0f;
     void Start()
     {
-         Destroy(gameObject, lifetime);
+        //  Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame
