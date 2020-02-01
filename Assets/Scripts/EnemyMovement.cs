@@ -5,11 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform tower;
+    Transform tower;
     NavMeshAgent _agent;
     // Start is called before the first frame update
     void Start()
     {
+        tower = GameObject.FindGameObjectWithTag("Tower").transform;
         _agent = GetComponent<NavMeshAgent>();
     }
 
