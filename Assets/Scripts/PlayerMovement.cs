@@ -45,4 +45,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+        void OnCollisionEnter(Collision collisionInfo) 
+    {
+       if (collisionInfo.collider.tag == "Enemy")
+       {
+           Debug.Log("We hit an enemy");
+           Destroy(gameObject);
+       }
+    }
 }
