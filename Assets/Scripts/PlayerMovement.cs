@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public int speed;
     bool max;
     Ray ray;
+    public GameObject waveClearedUI;
+    public GameObject prepareWaveUI;
 
     void Awake()
     {
@@ -67,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(collisionInfo.gameObject);
                 playerStats.gears = playerStats.gears + 1;
                 Debug.Log(playerStats.gears);
+                waveClearedUI.SetActive(true);
+                prepareWaveUI.SetActive(true);
             }
        }
 
