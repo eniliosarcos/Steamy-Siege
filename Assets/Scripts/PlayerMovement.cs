@@ -66,28 +66,42 @@ public class PlayerMovement : MonoBehaviour
     {
         
         //Colision con arma
-        if (collisionInfo.collider.tag == "Weapon" && counter == 0)
+        if (collisionInfo.collider.tag == "turret" && GetComponent<PlayerStats>().gears > 0)
         {
-            Debug.Log("We repaired a weapon");
-            collisionInfo.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-            counter = 1;
-            return;
+            print("asd");
+            switch (collisionInfo.collider.GetComponent<raycast>().level)
+            {
+                case 0:
+                    StartCoroutine(color(collisionInfo.collider.gameObject));
+                    collisionInfo.collider.GetComponent<raycast>().shootTime -= 1;
+                    collisionInfo.collider.GetComponent<raycast>().damage = 10;
+                    collisionInfo.collider.GetComponent<raycast>().level = 1;
+                    GetComponent<PlayerStats>().gears -= 1;
+                break;
+                case 1:
+                    StartCoroutine(color(collisionInfo.collider.gameObject));
+                    collisionInfo.collider.GetComponent<raycast>().shootTime -= 1;
+                    collisionInfo.collider.GetComponent<raycast>().damage = 15;
+                    collisionInfo.collider.GetComponent<raycast>().level = 2;
+                    GetComponent<PlayerStats>().gears -= 2;
+                break;
+                case 2:
+                    StartCoroutine(color(collisionInfo.collider.gameObject));
+                    collisionInfo.collider.GetComponent<raycast>().shootTime -= 0.3f;
+                    collisionInfo.collider.GetComponent<raycast>().damage = 25;
+                    collisionInfo.collider.GetComponent<raycast>().level = 3;
+                    GetComponent<PlayerStats>().gears -= 3;
+                break;
+            }
         }
 
-        if (collisionInfo.collider.tag == "Weapon" && counter == 1)
-        {
-            Debug.Log("Weapon upgraded");
-            counter = 2;
-            collisionInfo.gameObject.GetComponent<Renderer>().material.color = Color.green;
-            return;
-        }
+    }
 
-        if (collisionInfo.collider.tag == "Weapon" && counter == 2 && !max)
-        {
-            Debug.Log("Weapon upgraded to level 2");
-            collisionInfo.gameObject.GetComponent<Renderer>().material.color = Color.red;
-            max = true;
-        }
-
+    IEnumerator color(GameObject ob)
+    {
+        Color color = ob.GetComponentInChildren<SpriteRenderer>().color;
+        ob.GetComponentInChildren<SpriteRenderer>().color = Color.green;
+        yield return new WaitForSeconds(1.0f);
+        ob.GetComponentInChildren<SpriteRenderer>().color = color;
     }
 }

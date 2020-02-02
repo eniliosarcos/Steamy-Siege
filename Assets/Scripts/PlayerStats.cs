@@ -11,19 +11,19 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        texto.text = "Gears: "+ gears;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        texto.text = "Gears: "+ gears;
     }
 
     void OnCollisionEnter(Collision collisionInfo)
     {
         //Colision con engranajes.
-        if (collisionInfo.collider.tag == "coin")
+        if (collisionInfo.collider.tag == "Coin")
         {
             if (gears < 3)
             {

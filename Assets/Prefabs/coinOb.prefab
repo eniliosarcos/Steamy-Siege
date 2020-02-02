@@ -125,9 +125,9 @@ GameObject:
   - component: {fileID: 5630254178440142662}
   - component: {fileID: 551152983996384450}
   - component: {fileID: 6884731094948897196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: collider
-  m_TagString: coin
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

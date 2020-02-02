@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 6579325724665655663}
   m_Layer: 8
   m_Name: Navmesh
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8649d329b11428045aafdc8585937ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coin: {fileID: 3131563182343529146, guid: b02f789a882a5314abf85efa184960bb, type: 3}
   _ps: {fileID: 8388200758410814934, guid: 458c8b475827ee644a731c6f114d4966, type: 3}
+  health: 10
 --- !u!54 &5265104741754963222
 Rigidbody:
   m_ObjectHideFlags: 0
