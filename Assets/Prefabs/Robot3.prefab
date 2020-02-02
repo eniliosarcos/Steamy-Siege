@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8530022731452949071}
   - component: {fileID: 1488527813975085252}
   - component: {fileID: 2950655270920974892}
+  - component: {fileID: 2559682100744816891}
   m_Layer: 8
   m_Name: Navmesh
   m_TagString: Untagged
@@ -98,6 +99,25 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &2559682100744816891
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698322515251631370}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 810e2da0a9793854481f898f6ff6988d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6310843999411487503
 GameObject:
   m_ObjectHideFlags: 0
