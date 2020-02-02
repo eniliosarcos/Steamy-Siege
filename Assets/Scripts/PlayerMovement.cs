@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     Vector3 pos;
     bool complete;
     bool input;
+    Text text;
     int counter;
-    public Text text;
     public int speed;
     bool max;
     Ray ray;
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-        currentTime = startingTime;
+    
 
     }
     // Update is called once per framel
@@ -35,10 +35,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        currentTime -= 1 * Time.deltaTime;
-        Debug.Log(currentTime);
+
         float step = speed * Time.deltaTime;
-        text.text = currentTime.ToString();
         if (input)
         {
 
@@ -74,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("We hit an enemy");
                 Destroy(collisionInfo.gameObject);
                 playerStats.gears = playerStats.gears + 1;
-                text.text = playerStats.gears.ToString();
                 Debug.Log(playerStats.gears);
                 waveClearedUI.SetActive(true);
                 prepareWaveUI.SetActive(true);
