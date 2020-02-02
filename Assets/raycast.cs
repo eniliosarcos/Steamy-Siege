@@ -50,14 +50,18 @@ public class raycast : MonoBehaviour
 				{
 					Debug.DrawRay(transform.position, direction * distance, Color.red);
 					visibleTarget = hit.collider.transform;
-
+                        if(level != 0)
+                        {
                     if(timer() > shootTime )
                     {
                         _timer = 0.0f;
+
                         GameObject go = Instantiate(bullet,transform.position,Quaternion.identity);
                         go.GetComponent<bulletmovement>().damage = damage;
                         go.GetComponent<bulletmovement>().target = visibleTarget;
+                        
                     }
+                        }
 
 					playerdetected = true;
 				}

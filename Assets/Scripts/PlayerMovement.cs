@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Sprite turretLvL2;
+    public Sprite turretLvL3;
     private PlayerStats playerStats;
     // Start is called before the first frame update
     Vector3 pos;
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     Ray ray;
     public GameObject waveClearedUI;
     public GameObject prepareWaveUI;
+    public bool repairing;
 
     void Awake()
     {
@@ -64,44 +67,53 @@ public class PlayerMovement : MonoBehaviour
     //Colisiones del personaje.
     void OnCollisionEnter(Collision collisionInfo)
     {
-        
-        //Colision con arma
-        if (collisionInfo.collider.tag == "turret" && GetComponent<PlayerStats>().gears > 0)
+        if(!repairing)
         {
-            print("asd");
-            switch (collisionInfo.collider.GetComponent<raycast>().level)
+        //Colision con arma
+        if (collisionInfo.collider.tag == "turret" && GetComponent<PlayerStats>().gears >= 0)
+        {
+            if(collisionInfo.collider.GetComponent<raycast>().level == 0 && GetComponent<PlayerStats>().gears >= 1)
             {
-                case 0:
+                                    collisionInfo.collider.GetComponentInChildren<SpriteRenderer>().color = Color.white;
                     StartCoroutine(color(collisionInfo.collider.gameObject));
                     collisionInfo.collider.GetComponent<raycast>().shootTime -= 1;
                     collisionInfo.collider.GetComponent<raycast>().damage = 10;
                     collisionInfo.collider.GetComponent<raycast>().level = 1;
                     GetComponent<PlayerStats>().gears -= 1;
-                break;
-                case 1:
-                    StartCoroutine(color(collisionInfo.collider.gameObject));
+                    return;
+            }
+            if(collisionInfo.collider.GetComponent<raycast>().level == 1 && GetComponent<PlayerStats>().gears >= 2)
+            {
+                                    StartCoroutine(color(collisionInfo.collider.gameObject));
+                    collisionInfo.collider.GetComponentInChildren<SpriteRenderer>().sprite = turretLvL2;
                     collisionInfo.collider.GetComponent<raycast>().shootTime -= 1;
                     collisionInfo.collider.GetComponent<raycast>().damage = 15;
                     collisionInfo.collider.GetComponent<raycast>().level = 2;
                     GetComponent<PlayerStats>().gears -= 2;
-                break;
-                case 2:
-                    StartCoroutine(color(collisionInfo.collider.gameObject));
+                    return;
+            }
+            if(collisionInfo.collider.GetComponent<raycast>().level == 2 && GetComponent<PlayerStats>().gears == 3)
+            {
+                                    StartCoroutine(color(collisionInfo.collider.gameObject));
+                    collisionInfo.collider.GetComponentInChildren<SpriteRenderer>().sprite = turretLvL3;
                     collisionInfo.collider.GetComponent<raycast>().shootTime -= 0.3f;
                     collisionInfo.collider.GetComponent<raycast>().damage = 25;
                     collisionInfo.collider.GetComponent<raycast>().level = 3;
                     GetComponent<PlayerStats>().gears -= 3;
-                break;
+                    return;
             }
+        }
         }
 
     }
 
     IEnumerator color(GameObject ob)
     {
+        repairing = true;
         Color color = ob.GetComponentInChildren<SpriteRenderer>().color;
         ob.GetComponentInChildren<SpriteRenderer>().color = Color.green;
         yield return new WaitForSeconds(1.0f);
         ob.GetComponentInChildren<SpriteRenderer>().color = color;
+        repairing = false;
     }
 }

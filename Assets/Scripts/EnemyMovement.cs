@@ -23,6 +23,8 @@ public class EnemyMovement : MonoBehaviour
         {
             Instantiate(coin,transform.position,Quaternion.identity);
             Destroy(transform.parent.gameObject);
+            ParticleSystem ps1 = Instantiate(_ps,transform.position,Quaternion.identity);
+            Destroy(ps1.gameObject,2.0f);
         }
 
     }
