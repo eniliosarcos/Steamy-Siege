@@ -7,7 +7,7 @@ TagManager:
   - Enemy
   - Weapon
   - Tower
-  - Coin
+  - coin
   layers:
   - Default
   - TransparentFX
@@ -19,7 +19,7 @@ TagManager:
   - 
   - Enemy
   - Player
-  - 
+  - coin
   - 
   - 
   - 

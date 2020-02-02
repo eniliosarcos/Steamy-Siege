@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionEnter(Collision collisionInfo)
     {
         //Colision con engranajes.
-        if (collisionInfo.collider.tag == "Enemy")
+        if (collisionInfo.collider.tag == "coin")
         {
             if (playerStats.gears < 3)
             {
