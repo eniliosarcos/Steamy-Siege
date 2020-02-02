@@ -29,7 +29,7 @@ public class spawnEnemies : MonoBehaviour
             {
                 _intervaTime += intervalTime;
                 index = Random.Range(0,points.Length);
-                GameObject go = Instantiate(enemies[0],points[index].position,Quaternion.identity);
+                GameObject go = Instantiate(enemies[Random.Range(0,enemies.Length)],points[index].position,Quaternion.identity);
                 go.GetComponent<NavMeshAgent>().Warp(points[index].position);
             }
         }
