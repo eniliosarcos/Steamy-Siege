@@ -16,6 +16,8 @@ public class spawnEnemies : MonoBehaviour
     public int timeSpamBoss;
     public int timeincreaseHealth;
     public WaveManager waveManager;
+    public int timedecreaseInterval;
+    public bool decreased;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,13 +45,18 @@ public class spawnEnemies : MonoBehaviour
 
             if(spawnBoss)
             {
+                if(TimerInterval()>timedecreaseInterval && !decreased)
+                {
+                    decreased = true;
+                    _intervaTime -= 4;
+                }
                 if(TimerInterval() > (_intervaTime-2))
                 {
                 _intervaTime += intervalTime;
                 index = Random.Range(0,points.Length);
                 if(TimerInterval() > timeincreaseHealth)
                 {
-                                    GameObject go = Instantiate(enemies[Random.Range(0,enemies.Length)],points[index].position,Quaternion.identity);
+                                    GameObject go = Instantiate(enemies[Random.Range(2,enemies.Length)],points[index].position,Quaternion.identity);
                                 go.GetComponentInChildren<NavMeshAgent>().Warp(points[index].position);
                                 go.GetComponentInChildren<EnemyMovement>().health += 50;
                 }
@@ -58,6 +65,7 @@ public class spawnEnemies : MonoBehaviour
                 GameObject go = Instantiate(enemies[Random.Range(0,enemies.Length)],points[index].position,Quaternion.identity);
                                 go.GetComponentInChildren<NavMeshAgent>().Warp(points[index].position);
                 }
+
                 
                 //go.transform.Rotate (90f, 0f, 0f);
 
