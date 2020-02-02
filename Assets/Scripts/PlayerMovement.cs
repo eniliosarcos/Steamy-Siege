@@ -64,20 +64,7 @@ public class PlayerMovement : MonoBehaviour
     //Colisiones del personaje.
     void OnCollisionEnter(Collision collisionInfo)
     {
-        //Colision con engranajes.
-        if (collisionInfo.collider.tag == "coin")
-        {
-            if (playerStats.gears < 3)
-            {
-                Debug.Log("We hit an enemy");
-                Destroy(collisionInfo.gameObject);
-                playerStats.gears = playerStats.gears + 1;
-                Debug.Log(playerStats.gears);
-                waveClearedUI.SetActive(true);
-                prepareWaveUI.SetActive(true);
-            }
-       }
-
+        
         //Colision con arma
         if (collisionInfo.collider.tag == "Weapon" && counter == 0)
         {
