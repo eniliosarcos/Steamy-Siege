@@ -8,11 +8,13 @@ public class WaveManager : MonoBehaviour
     public int TimeWaitWave = 3;
     public bool startSpamEnemies;
     float _timer = 0;
+    bool stop;
     public Text timeUI;
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(stopwatch());
+        _timer = TimeWaitWave;
         timeUI.text = TimeWaitWave.ToString();
 
     }
@@ -20,20 +22,41 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _timer += Time.deltaTime;
-
-        if(_timer > TimeWaitWave && !startSpamEnemies)
+        if (stop)
         {
-            timeUI.text = _timer.ToString();
-            startSpamEnemies = true;
-            _timer = _timer - TimeWaitWave;
-            Time.timeScale = 1;
+            _timer -= Time.deltaTime;
+
+            if (_timer > 1)
+            {
+                timeUI.text = "" + (int)_timer;
+            }
+            else
+            {
+                StartCoroutine(startText());
+                startSpamEnemies = true;
+                StartCoroutine(turnOff());
+            }
         }
     }
 
-    // float waveTimer()
-    // {
-    //     return _timer -= Time.deltaTime;
+    IEnumerator stopwatch()
+    {
 
-    // }
+        yield return new WaitForSeconds(2.0f);
+        stop = true;
+
+    }
+
+    IEnumerator turnOff()
+    {
+        yield return new WaitForSeconds(3.0f);
+        timeUI.gameObject.SetActive(false);
+    }
+
+    IEnumerator startText()
+    {
+        yield return new WaitForSeconds(.0f);
+        timeUI.text = "Enemies Incoming";
+    }
+
 }
